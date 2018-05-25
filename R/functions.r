@@ -128,6 +128,10 @@ tmle <- function(data, tau){
         S1 <- tapply(1-h1, id, cumprod, simplify = FALSE)
         S0 <- tapply(1-h0, id, cumprod, simplify = FALSE)
 
+        prodlag <- function(x) cumprod(c(1, x[-length(x)]))
+        S1lag <- tapply(1 - h1, id, prodlag, simplify = FALSE)
+        S0lag <- tapply(1 - h0, id, prodlag, simplify = FALSE)
+
         G1 <- tapply(1-gR1, id, cumprod, simplify = FALSE)
         G0 <- tapply(1-gR0, id, cumprod, simplify = FALSE)
 
@@ -136,6 +140,9 @@ tmle <- function(data, tau){
 
         Sm1 <- unlist(S1)
         Sm0 <- unlist(S0)
+        Sm1lag <- unlist(S1lag)
+        Sm0lag <- unlist(S0lag)
+
         Gm1 <- unlist(G1)
         Gm0 <- unlist(G0)
 
@@ -160,8 +167,8 @@ tmle <- function(data, tau){
 
         M <- tapply(Sm1 / bound(gA1[id]) * (m <= tau-1), id, sum) +
             tapply(Sm0 / bound(gA0[id]) * (m <= tau-1), id, sum)
-        H1 <- -rowSums((ind * St1)[,1:(tau-1)]) / bound(gA1[id] * Gm1)
-        H0 <- -rowSums((ind * St0)[,1:(tau-1)]) / bound(gA0[id] * Gm0)
+        H1 <- -rowSums((ind * St1)[,1:(tau-1)]) / bound(Sm1lag * gA1[id] * Gm1)
+        H0 <- -rowSums((ind * St0)[,1:(tau-1)]) / bound(Sm0lag * gA0[id] * Gm0)
         H <- A * H1 - (1-A) * H0
 
         eps   <- coef(glm2(Lm ~ 0 + offset(qlogis(h)) + I(A * Z1) + I((1-A) * Z0),
