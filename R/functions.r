@@ -81,7 +81,7 @@ transformData <- function(df, freq.time){
 #'                         differ1 + differ2 + differ3 + differNA + extent1 + extent2 +
 #'                         extent3 + extent4 + surg + node4 + etype),
 #'             data = dlong, subset = Im == 1, family = binomial())
-#' fitR <- glm(Rm ~ A * (m + sex + age + obstruct + perfor + adhere + nodes + D +
+#' fitR <- glm(Rm ~ A * (as.factor(m) + sex + age + obstruct + perfor + adhere + nodes + D +
 #'                         differ1 + differ2 + differ3 + differNA + extent1 + extent2 +
 #'                         extent3 + extent4 + surg + node4 + etype),
 #'             data = dlong, subset = Jm == 1, family = binomial())
