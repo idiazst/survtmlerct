@@ -50,7 +50,7 @@ transformData <- function(df, freq.time){
         Jm[m == t] <- (df$T > t) * df$D + (df$T >= t) * (1 - df$D)
     }
 
-    data <- data.frame(df[gl(n, K), ], m = m, Im, Jm, Rm, Lm)
+    data <- data.frame(df[as.numeric(gl(n, K)), ], m = m, Im, Jm, Rm, Lm)
 
     return(data)
 
