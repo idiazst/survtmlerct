@@ -395,7 +395,15 @@ unadjusted <- function(data, tau){
     DW0 <- with(data, rowSums(St0[m==1, 1:(tau-1)]))
     km <- 1 + c(mean(DW0), mean(DW1))
 
-    return(list(km = km, ipw = ipw))
+    Z1 <- -rowSums((ind * St1)[, 1:(tau-1)]) / bound(Sm1 * gA1[id] * Gm1)
+    Z0 <- -rowSums((ind * St0)[, 1:(tau-1)]) / bound(Sm0 * gA0[id] * Gm0)
+
+    DT1 <- with(data, tapply(Im * A*Z1 * (Lm - h), id, sum))
+    DT0 <- with(data, tapply(Im * (1-A)*Z0 * (Lm - h), id, sum))
+    D <- DT1 - DT0 + DW1 - DW0
+    sekm <- sqrt(var(D) / n)
+    
+    return(list(km = km, ipw = ipw, sekm = sekm))
 
 }
 
