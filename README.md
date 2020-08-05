@@ -78,14 +78,27 @@ dlong <- mutate(dlong,
                 h1  = bound01(predict(fitL, newdata = mutate(dlong, A = 1), type = 'response')),
                 h0  = bound01(predict(fitL, newdata = mutate(dlong, A = 0), type = 'response')),
                 gA1 = bound01(predict(fitA, newdata = mutate(dlong, A = 1), type = 'response')))
+                
+# estimate the RMST using tmle, aipw, ipw, and unadjusted estimators
+tau <- max(dlong$m)
+rmst_tmle <- tmle_rmst(dlong, tau)
+rmst_aipw <- aipw_rmst(dlong, tau)
+rmst_ipw  <- ipw_rmst(dlong, tau)
+rmst_unad <- unadjusted_rmst(dlong, tau)
+
+# look at estimates
+rmst_tmle
+rmst_aipw
+rmst_ipw
+rmst_unad
+```
 ```
 
 
 You can also compute estimates of the survival probability at a given time point:
 
 ```{r}
-# sestimate the survival probability using tmle, aipw, ipw, and unadjusted estimators
-tau <- max(dlong$m)
+# estimate the survival probability using tmle, aipw, ipw, and unadjusted estimators
 prob_tmle <- tmle_prob(dlong, tau)
 prob_aipw <- aipw_prob(dlong, tau)
 prob_ipw  <- ipw_prob(dlong, tau)
