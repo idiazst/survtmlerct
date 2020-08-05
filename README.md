@@ -14,7 +14,7 @@ For completeness, the package also implements several unadjusted estimators base
 
 The estimators implemented in the package use preliminary estimats of: (i) the probability of treatment conditional on basline covariates, (ii) the hazard of censoring conditional on baseline covariates, and (iii) the hazard of the outcome conditional on covariates. These estimators may be based on model selection or data-adaptive regression such as machine learning. The estimators are doubly robust in that they remain consistent if either (i) and (ii) are consistently estimated, or (iii) is consistently estimated. 
 
-See [Díaz et al. (2014)](https://link.springer.com/article/10.1007/s10985-018-9428-5) for more details. 
+See [Díaz et al. (2018)](https://link.springer.com/article/10.1007/s10985-018-9428-5) for more details. 
 
 ---
 
