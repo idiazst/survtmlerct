@@ -39,6 +39,7 @@ library(survtmlerct)
 library(survival)
 library(tidyverse)
 library(dummies)
+library(glm2)
 
 # load data
 data(colon)
