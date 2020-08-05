@@ -42,6 +42,7 @@ library(dummies)
 
 # load data
 data(colon)
+
 # rename variables data
 data <- colon %>% dummy.data.frame(c('differ', 'extent')) %>%
    filter(rx != 'Obs') %>%
@@ -49,6 +50,7 @@ data <- colon %>% dummy.data.frame(c('differ', 'extent')) %>%
           nanodes = is.na(nodes), nodes = ifelse(is.na(nodes), 0, nodes)) %>%
    select(-rx) %>%  group_by(id) %>% summarise_all(funs(min)) %>% select(-study) %>%
    rename(T = time, D = status)
+   
 # transform data to long form
 dlong <- transformData(data, 30)
 
