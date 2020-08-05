@@ -5,7 +5,7 @@ print.adjusted_rmst <- function(x){
 }
 print.ipw_rmst <- function(x){
   cat('RMST for control arm (A == 0): ', x['rmst0'], '\n')
-  cat('RMST for treatment arm (A == 1): ', x'rmst1'], '\n') 
+  cat('RMST for treatment arm (A == 1): ', x['rmst1'], '\n') 
   cat('Standard errors not available for IPW\n') 
 }
 print.adjusted_prob <- function(x){
