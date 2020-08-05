@@ -155,7 +155,7 @@ tmle_rmst <- function(data, tau){
     sdn <- sqrt(var(D) / n)
 
     out <- list(rmst = c(rmst0 = theta0, rmst1 = theta1), std.error.diff = sdn)
-    class(out) <- 'adjusted'
+    class(out) <- 'adjusted_rmst'
     return(out)
 
 }
@@ -203,7 +203,7 @@ ipw_rmst <- function(data, tau){
     ipw  <- tau + c(mean(DT0ipw), mean(DT1ipw))
 
     out <- c(rmst0 = ipw[1], rmst1 = ipw[2])
-    class(out) <- 'ipw'
+    class(out) <- 'ipw_rmst'
     return(out)
 
 }
@@ -265,7 +265,7 @@ aipw_rmst <- function(data, tau){
     sdn <- sqrt(var(D) / n)
 
     out <- list(rmst = c(rmst0 = aipw[1], rmst1 = aipw[2]), std.error.diff = sdn)
-    class(out) <- 'adjusted'
+    class(out) <- 'adjusted_rmst'
     return(out)
 
 }
@@ -336,6 +336,6 @@ unadjusted_rmst <- function(data, tau){
     sekm <- sqrt(var(D) / n)
 
     out <- list(rmst = c(rmst0 = km[1], rmst1 = km[2]), std.error.diff = sekm)
-    class(out) <- 'adjusted'
+    class(out) <- 'adjusted_rmst'
     return(out)
 }
