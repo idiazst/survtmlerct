@@ -99,7 +99,7 @@ You can also compute estimates of the survival probability at a given time point
 
 ```{r}
 # estimate the survival probability using tmle, aipw, ipw, and unadjusted estimators
-tau <- 50
+tau <- 20
 prob_tmle <- tmle_prob(dlong, tau)
 prob_aipw <- aipw_prob(dlong, tau)
 prob_unad <- unadjusted_prob(dlong, tau)
