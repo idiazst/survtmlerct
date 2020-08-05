@@ -1,18 +1,4 @@
----
-output: github_document
----
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
-
 # R/`survtmlerct`
-
-
 
 > Estimators with efficiency guarantees for the RMST and survival probability in randomized trials with right censoring 
 __Author:__ [Iván Díaz](http://idiaz.xyz/)
