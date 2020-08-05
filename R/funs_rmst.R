@@ -154,7 +154,9 @@ tmle_rmst <- function(data, tau){
     D <- DT + DW1 - DW0 - theta
     sdn <- sqrt(var(D) / n)
 
-    return(list(theta = c(theta0, theta1), sdn = sdn))
+    out <- list(rmst = c(rmst0 = theta0, rmst1 = theta1), std.error.diff = sdn)
+    class(out) <- 'adjusted'
+    return(out)
 
 }
 
@@ -200,7 +202,9 @@ ipw_rmst <- function(data, tau){
     DT0ipw <- with(data, tapply(Im * (1-A)*Z0ipw * Lm , id, sum))
     ipw  <- tau + c(mean(DT0ipw), mean(DT1ipw))
 
-    return(ipw)
+    out <- c(rmst0 = ipw[1], rmst1 = ipw[2])
+    class(out) <- 'ipw'
+    return(out)
 
 }
 
@@ -260,7 +264,9 @@ aipw_rmst <- function(data, tau){
     D <- DT1 - DT0 + DW1 - DW0
     sdn <- sqrt(var(D) / n)
 
-    return(list(theta = aipw, sdn = sdn))
+    out <- list(rmst = c(rmst0 = aipw[1], rmst1 = aipw[2]), std.error.diff = sdn)
+    class(out) <- 'adjusted'
+    return(out)
 
 }
 
@@ -329,6 +335,7 @@ unadjusted_rmst <- function(data, tau){
     D <- DT1 - DT0 + DW1 - DW0
     sekm <- sqrt(var(D) / n)
 
-    return(list(km = km, sekm = sekm))
-
+    out <- list(rmst = c(rmst0 = km[1], rmst1 = km[2]), std.error.diff = sekm)
+    class(out) <- 'adjusted'
+    return(out)
 }
