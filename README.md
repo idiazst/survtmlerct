@@ -121,7 +121,7 @@ issue](https://github.com/idiazst/survtmlerct/issues).
 
 ## Citation
 
-After using the `drord` R package, please cite both of the following:
+After using the `survtmlerct` R package, please cite both of the following:
 
     @Manual{survtmlerct,
       title = {survtmlerct: Efficiency guarantees for covariate adjustment in RCTs with survival outcomes},
