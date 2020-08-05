@@ -59,6 +59,8 @@ fitL <- glm(Lm ~ A * (m + sex + age + obstruct + perfor + adhere + nodes + D +
                         differ1 + differ2 + differ3 + differNA + extent1 + extent2 +
                         extent3 + extent4 + surg + node4 + etype),
             data = dlong, subset = Im == 1, family = binomial())
+            
+# in order to obtain efficiency guarantees compared to unadjusted estimators, time must be a factor in the censoring model:
 fitR <- glm(Rm ~ A * (as.factor(m) + sex + age + obstruct + perfor + adhere + nodes + D +
                         differ1 + differ2 + differ3 + differNA + extent1 + extent2 +
                         extent3 + extent4 + surg + node4 + etype),
