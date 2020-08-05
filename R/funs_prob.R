@@ -158,8 +158,8 @@ tmle_prob <- function(data, tau){
     D <- DT + DW1 - DW0 - theta
     sdn <- sqrt(var(D) / n)
 
-    out <- list(rmst = c(rmst0 = theta0, rmst1 = theta1), std.error.diff = sdn)
-    class(out) <- 'adjusted'
+    out <- list(prob = c(prob0 = theta0, prob1 = theta1), std.error.diff = sdn)
+    class(out) <- 'adjusted_prob'
     return(out)
 
 }
@@ -220,8 +220,8 @@ aipw_prob <- function(data, tau){
     D <- DT1 - DT0 + DW1 - DW0
     sdn <- sqrt(var(D) / n)
     
-    out <- list(rmst = c(rmst0 = aipw[1], rmst1 = aipw[2]), std.error.diff = sdn)
-    class(out) <- 'adjusted'
+    out <- list(prob = c(prob0 = aipw[1], prob1 = aipw[2]), std.error.diff = sdn)
+    class(out) <- 'adjusted_prob'
     return(out)
 }
 
@@ -284,8 +284,8 @@ unadjusted_prob <- function(data, tau){
     D <- DT1 - DT0 + DW1 - DW0
     sekm <- sqrt(var(D) / n)
 
-    out <- list(rmst = c(rmst0 = km[1], rmst1 = km[2]), std.error.diff = sekm)
-    class(out) <- 'adjusted'
+    out <- list(prob = c(prob0 = km[1], prob1 = km[2]), std.error.diff = sekm)
+    class(out) <- 'adjusted_prob'
     return(out)
 
 }
