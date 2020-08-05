@@ -93,7 +93,6 @@ rmst_aipw
 rmst_ipw
 rmst_unad
 ```
-```
 
 
 You can also compute estimates of the survival probability at a given time point:
