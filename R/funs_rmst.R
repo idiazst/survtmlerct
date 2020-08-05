@@ -329,6 +329,6 @@ unadjusted_rmst <- function(data, tau){
     D <- DT1 - DT0 + DW1 - DW0
     sekm <- sqrt(var(D) / n)
 
-    return(list(km = km, ipw = ipw, sekm = sekm))
+    return(list(km = km, sekm = sekm))
 
 }
