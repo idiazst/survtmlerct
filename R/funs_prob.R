@@ -158,7 +158,9 @@ tmle_prob <- function(data, tau){
     D <- DT + DW1 - DW0 - theta
     sdn <- sqrt(var(D) / n)
 
-    return(list(theta = c(theta0, theta1), sdn = sdn))
+    out <- list(rmst = c(rmst0 = theta0, rmst1 = theta1), std.error.diff = sdn)
+    class(out) <- 'adjusted'
+    return(out)
 
 }
 
@@ -217,9 +219,10 @@ aipw_prob <- function(data, tau){
 
     D <- DT1 - DT0 + DW1 - DW0
     sdn <- sqrt(var(D) / n)
-
-    return(list(theta = aipw, sdn = sdn))
-
+    
+    out <- list(rmst = c(rmst0 = aipw[1], rmst1 = aipw[2]), std.error.diff = sdn)
+    class(out) <- 'adjusted'
+    return(out)
 }
 
 #' Compute unadjusted Kaplan-Meier estimators of survival probability
@@ -281,6 +284,8 @@ unadjusted_prob <- function(data, tau){
     D <- DT1 - DT0 + DW1 - DW0
     sekm <- sqrt(var(D) / n)
 
-    return(list(km = km, sekm = sekm))
+    out <- list(rmst = c(rmst0 = km[1], rmst1 = km[2]), std.error.diff = sekm)
+    class(out) <- 'adjusted'
+    return(out)
 
 }
