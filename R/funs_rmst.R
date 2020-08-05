@@ -97,11 +97,11 @@ tmle_rmst <- function(data, tau){
         H0 <- -rowSums((ind * St0)[,1:(tau-1)]) / bound(Sm0lag * gA0[id] * Gm0)
         H <- A * H1 - (1-A) * H0
 
-        eps   <- coef(glm2(Lm ~ 0 + offset(qlogis(h)) + I(A * Z1) + I((1-A) * Z0),
+        eps   <- coef(glm2::glm2(Lm ~ 0 + offset(qlogis(h)) + I(A * Z1) + I((1-A) * Z0),
                            family = binomial(), subset = Im == 1, data = data))
-        gamma <- coef(glm2(Rm ~ 0 + offset(qlogis(gR)) + H, family = binomial(),
+        gamma <- coef(glm2::glm2(Rm ~ 0 + offset(qlogis(gR)) + H, family = binomial(),
                            subset = Jm == 1, data = data))
-        nu    <- coef(glm2(A[m == 1] ~ 0 + offset(qlogis(gA1)) + M,
+        nu    <- coef(glm2::glm2(A[m == 1] ~ 0 + offset(qlogis(gA1)) + M,
                            family = binomial()))
 
         h1old <- h1
