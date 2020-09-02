@@ -29,6 +29,23 @@ devtools::install_github("idiazst/survtmlerct")
 
 ---
 
+## Help Files for main functions
+
+Help files are available for the main functions in the package and can be viewed by typing
+?survtmlerct::<function_name> for one of the following functions:
+```{r}
+tmle_prob 	Compute TMLE of survival probability with efficiency gains
+tmle_rmst 	Compute TMLE of RMST with efficiency gains
+aipw_prob   	Compute AIPW of survival probability
+aipw_rmst   	Compute AIPW of RMST
+ipw_rmst	Compute IPW of RMST
+transformData 	Transform a survival dataset from short to long form
+unadjusted_prob	Compute unadjusted Kaplan-Meier estimators of survival probability
+unadjusted_rmst	Compute unadjusted IPW and Kaplan-Meier estimators of RMST
+```
+
+---
+
 ## Usage
 
 Here we demonstrate calls to `survtmlerct` to compute treatment effects using the RMST and
